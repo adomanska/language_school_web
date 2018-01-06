@@ -70,20 +70,26 @@
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                     <a class="nav-link" href="@Url.Action("Index", "Home")">
-                        <i class="fa fa-fw fa-dashboard"></i>
+                        <i class="fa fa-fw fa-home"></i>
                         <span class="nav-link-text">Home</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                    <a class="nav-link"  href="@Url.Action("About", "Home")">
-                        <i class="fa fa-fw fa-area-chart"></i>
+                    <a class="nav-link" href="@Url.Action("About", "Home")">
+                        <i class="fa fa-fw fa-info"></i>
                         <span class="nav-link-text">About</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-                    <a class="nav-link"  href="@Url.Action("Contact", "Home")">
-                        <i class="fa fa-fw fa-table"></i>
+                    <a class="nav-link" href="@Url.Action("Contact", "Home")">
+                        <i class="fa fa-fw fa-mobile-phone"></i>
                         <span class="nav-link-text">Contact</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                    <a class="nav-link" href="@Url.Action("Index", "Classes")">
+                        <i class="fa fa-fw fa-graduation-cap"></i>
+                        <span class="nav-link-text">Classes</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
@@ -189,16 +195,14 @@
     <div class="content-wrapper">
         <div class="container-fluid">
             <!-- Breadcrumbs-->
-            <ol class="breadcrumb">
+            @*<ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="index.html">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active">Blank Page</li>
-            </ol>
+            </ol>*@
             <div class="row">
                 <div class="col-12">
-                    <h1>Blank</h1>
-                    <p>This is an example of a blank page that you can use as a starting point for creating new ones.</p>
                     @RenderBody()
                 </div>
             </div>
