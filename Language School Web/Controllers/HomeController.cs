@@ -26,5 +26,7 @@ namespace Language_School_Web.Controllers
 
             return View();
         }
+
+        
     }
 }
