@@ -1,0 +1,55 @@
+﻿@model IEnumerable<LanguageSchool.Models.ClassDataDto>
+
+@{
+    ViewBag.Title = "Classes";
+}
+<!-- Classes Table Card-->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Data Table Example
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Language</th>
+                        <th>Level</th>
+                        <th>Registration State</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Language</th>
+                        <th>Level</th>
+                        <th>Registration State</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClassName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Language)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LanguageLevel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentsCount)/@Html.DisplayFor(modelItem=>item.StudentsMax)
+                        </td>
+                    </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+
+
