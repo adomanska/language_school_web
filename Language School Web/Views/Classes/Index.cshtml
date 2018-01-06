@@ -1,55 +1,94 @@
-﻿@model IEnumerable<LanguageSchool.Models.ClassDataDto>
+﻿@model Tuple<IEnumerable<LanguageSchool.Models.ClassDataDto>,IEnumerable<LanguageSchool.Models.ClassBasicDataDto>>
 
 @{
     ViewBag.Title = "Classes";
 }
 <!-- Classes Table Card-->
-<div class="card mb-3">
-    <div class="card-header">
-        <i class="fa fa-table"></i> Data Table Example
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Language</th>
-                        <th>Level</th>
-                        <th>Registration State</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Language</th>
-                        <th>Level</th>
-                        <th>Registration State</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ClassName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Language)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LanguageLevel)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.StudentsCount)/@Html.DisplayFor(modelItem=>item.StudentsMax)
-                        </td>
-                    </tr>
-                        }
-                </tbody>
-            </table>
+<div class="container-fluid">
+    <h1>Top Classes</h1>
+    <hr>
+    <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-gold o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i>1</i>
+                    </div>
+                    <div class="mr-5">@Model.Item2.First().ClassName</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-silver o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i>2</i>
+                    </div>
+                    <div class="mr-5">@Model.Item2.ElementAt(1).ClassName</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-bronze o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i>3</i>
+                    </div>
+                    <div class="mr-5">@Model.Item2.ElementAt(2).ClassName</div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    <br style="line-height:10"/>
+    <h1>All Classes</h1>
+    <hr>
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Data Table Example
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Language</th>
+                            <th>Level</th>
+                            <th>Registration State</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Language</th>
+                            <th>Level</th>
+                            <th>Registration State</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model.Item1)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ClassName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Language)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LanguageLevel)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StudentsCount)/@Html.DisplayFor(modelItem => item.StudentsMax)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
 </div>
 
 

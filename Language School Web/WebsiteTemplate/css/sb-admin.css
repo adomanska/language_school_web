@@ -52,6 +52,17 @@ body.fixed-nav {
 .z-1 {
   z-index: 1; }
 
+.bg-gold {
+    background-color: #007bff !important;
+}
+
+.bg-silver {
+    background-color: #63aeff !important;
+}
+
+.bg-bronze {
+    background-color: #b2d7ff !important;
+}
 #mainNav .navbar-collapse {
   overflow: auto;
   max-height: 75vh; }
@@ -304,12 +315,13 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 .card-body-icon {
   position: absolute;
   z-index: 0;
-  top: -25px;
-  right: -25px;
-  font-size: 5rem;
-  -webkit-transform: rotate(15deg);
-  -ms-transform: rotate(15deg);
-  transform: rotate(15deg); }
+  top: -15px;
+  right: 15px;
+  font-size: 4rem;
+  font-family: 'Lucida Console';
+  /*-webkit-transform: rotate(5deg);
+  -ms-transform: rotate(5deg);
+  transform: rotate(5deg);*/ }
 
 @media (min-width: 576px) {
   .card-columns {
