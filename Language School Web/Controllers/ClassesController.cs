@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
 using LanguageSchool.Models;
@@ -18,6 +19,8 @@ namespace Language_School_Web.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchool/api/");
+                //string accessToken = Request.Cookies["token"].Value;
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 //HTTP GET
                 var responseTask = client.GetAsync("classes");
                 responseTask.Wait();
