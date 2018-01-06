@@ -163,6 +163,7 @@
     <Compile Include="Models\LanguageDataDto.cs" />
     <Compile Include="Models\LanguageLevelDataDto.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\StudentBasicDataDto.cs" />
     <Compile Include="Models\StudentDataDto.cs" />
     <Compile Include="Models\TokenModel.cs" />
