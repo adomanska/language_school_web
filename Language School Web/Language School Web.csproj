@@ -158,12 +158,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ClassBasicDataDto.cs" />
-    <Compile Include="Models\ClassDataDto.cs" />
-    <Compile Include="Models\LanguageDataDto.cs" />
-    <Compile Include="Models\LanguageLevelDataDto.cs" />
-    <Compile Include="Models\StudentBasicDataDto.cs" />
-    <Compile Include="Models\StudentDataDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
