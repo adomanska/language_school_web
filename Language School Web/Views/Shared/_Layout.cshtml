@@ -67,19 +67,19 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                    <a class="nav-link" @Html.ActionLink("Home", "Index", "Home")>
+                    <a class="nav-link" href="@Url.Action("Index", "Home")">
                         <i class="fa fa-fw fa-dashboard"></i>
                         <span class="nav-link-text">Home</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                    <a class="nav-link" @Html.ActionLink("About", "About", "Home")>
+                    <a class="nav-link"  href="@Url.Action("About", "Home")">
                         <i class="fa fa-fw fa-area-chart"></i>
                         <span class="nav-link-text">About</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-                    <a class="nav-link" @Html.ActionLink("Contact", "Contact", "Home")>
+                    <a class="nav-link"  href="@Url.Action("Contact", "Home")">
                         <i class="fa fa-fw fa-table"></i>
                         <span class="nav-link-text">Contact</span>
                     </a>
