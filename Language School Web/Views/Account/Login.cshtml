@@ -1,11 +1,12 @@
-﻿@{
+﻿@using Language_School_Web.Models;
+@model LoginViewModel
+
+@{
     Layout = null;
 }
 @{
     ViewBag.Title = "Login";
 }
-
-<h2>Login</h2>
 
 
 <!DOCTYPE html>
@@ -31,14 +32,17 @@
         <div class="card card-login mx-auto mt-5">
             <div class="card-header">Login</div>
             <div class="card-body">
-                <form>
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                {
                     <div class="form-group">
                         <label for="exampleInputEmail1">Username</label>
-                        <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter username">
+                        @Html.TextBoxFor(m => m.Username, new { placeholder = "Enter username", @class = "form-control"})
+                        @*<input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter username">*@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password">
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control" })
+                        @*<input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password">*@
                     </div>
                     <div class="form-group">
                         <div class="form-check">
@@ -47,8 +51,8 @@
                             </label>
                         </div>
                     </div>
-                    <a class="btn btn-primary btn-block" href="@Url.Action("Index", "Home")">Login</a>
-                </form>
+                    <input type="submit" value="Login" class="btn btn-primary btn-block"/>
+                }
                 <div class="text-center">
                     <a class="d-block small mt-3" href="@Url.Action("Register", "Account")">Register an Account</a>
                     <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
