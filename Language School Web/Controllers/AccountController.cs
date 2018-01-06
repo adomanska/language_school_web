@@ -13,6 +13,9 @@ namespace Language_School_Web.Controllers
 {
     public class AccountController : Controller
     {
+
+        private Uri baseAddrress = new Uri("http://projektnet.mini.pw.edu.pl");
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -67,11 +70,36 @@ namespace Language_School_Web.Controllers
             return View(model);
         }
 
-        public ActionResult Register()
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Register(string returnUrl)
         {
-            ViewBag.Message = "Your register page.";
-
+            ViewBag.ReturnUrl = returnUrl;
             return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Register(RegisterViewModel model)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchool/api/");
+
+                //HTTP POST
+                var postTask = client.PostAsJsonAsync<RegisterViewModel>("account/register", model);
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Login");
+                }
+            }
+
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+            return View(model);
         }
     }
 }
