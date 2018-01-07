@@ -70,14 +70,14 @@
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                     <a class="nav-link" href="@Url.Action("Index", "Home")">
-                        <i class="fa fa-fw fa-dashboard"></i>
+                        <i class="fa fa-fw fa-home"></i>
                         <span class="nav-link-text">Home</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                    <a class="nav-link"  href="@Url.Action("About", "Home")">
-                        <i class="fa fa-fw fa-area-chart"></i>
-                        <span class="nav-link-text">About</span>
+                    <a class="nav-link"  href="@Url.Action("Info", "Profile")">
+                        <i class="fa fa-fw fa-user"></i>
+                        <span class="nav-link-text">Profile</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
@@ -197,8 +197,6 @@
             </ol>
             <div class="row">
                 <div class="col-12">
-                    <h1>Blank</h1>
-                    <p>This is an example of a blank page that you can use as a starting point for creating new ones.</p>
                     @RenderBody()
                 </div>
             </div>

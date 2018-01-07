@@ -155,6 +155,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClassesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -394,6 +395,7 @@
     <Content Include="WebsiteTemplate\.jsbeautifyrc" />
     <Content Include="WebsiteTemplate\.travis.yml" />
     <Content Include="WebsiteTemplate\package.json" />
+    <Content Include="Views\Profile\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
