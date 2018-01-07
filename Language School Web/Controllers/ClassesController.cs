@@ -21,8 +21,8 @@ namespace Language_School_Web.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchool/api/");
-                
+                client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchoolWeb/api/");
+
                 //HTTP GET
                 var responseTask = client.GetAsync("classes");
                 responseTask.Wait();
@@ -100,7 +100,7 @@ namespace Language_School_Web.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchool/api/");
+                client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchoolWeb/api/");
                 string accessToken = Request.Cookies["token"].Value;
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 

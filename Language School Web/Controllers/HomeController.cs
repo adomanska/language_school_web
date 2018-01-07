@@ -10,7 +10,8 @@ namespace Language_School_Web.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("Login", "Account");
+            //return RedirectToAction("Login", "Account");
+            return View();
         }
 
         public ActionResult About()

@@ -42,7 +42,7 @@ namespace Language_School_Web.Controllers
                 //var postTask = client.PostAsJsonAsync<LoginViewModel>("token", model);
                 //postTask.Wait();
                 client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl");
-                var request = new HttpRequestMessage(HttpMethod.Post, "/LanguageSchool/token");
+                var request = new HttpRequestMessage(HttpMethod.Post, "/LanguageSchoolWeb/token");
 
                 var requestContent = string.Format("grant_type={0}&username={1}&password={2}", Uri.EscapeDataString("password"),
                     Uri.EscapeDataString(model.Username), Uri.EscapeDataString(model.Password));
@@ -84,7 +84,7 @@ namespace Language_School_Web.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchool/api/");
+                client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchoolWeb/api/");
 
                 //HTTP POST
                 var postTask = client.PostAsJsonAsync<RegisterViewModel>("account/register", model);
