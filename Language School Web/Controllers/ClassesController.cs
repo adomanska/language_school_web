@@ -14,13 +14,13 @@ namespace Language_School_Web.Controllers
         // GET: Classes
         public ActionResult Index()
         {
-            IEnumerable<ClassDataDto> classes = null;
+            IEnumerable<ClassDataDto> allClasses = null;
+            IEnumerable<ClassBasicDataDto> topClasses = null;
 
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchool/api/");
-                //string accessToken = Request.Cookies["token"].Value;
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                
                 //HTTP GET
                 var responseTask = client.GetAsync("classes");
                 responseTask.Wait();
@@ -31,18 +31,40 @@ namespace Language_School_Web.Controllers
                     var readTask = result.Content.ReadAsAsync<IList<ClassDataDto>>();
                     readTask.Wait();
 
-                    classes = readTask.Result;
+                    allClasses = readTask.Result;
                 }
                 else //web api sent error response 
                 {
                     //log response status here..
 
-                    classes = Enumerable.Empty<ClassDataDto>();
+                    allClasses = Enumerable.Empty<ClassDataDto>();
 
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
+
+                responseTask = client.GetAsync("classes/top/3");
+                responseTask.Wait();
+
+                result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<ClassBasicDataDto>>();
+                    readTask.Wait();
+
+                    topClasses = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    topClasses = Enumerable.Empty<ClassBasicDataDto>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+                //string accessToken = Request.Cookies["token"].Value;
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             }
-            return View(classes);
+            return View(Tuple.Create(allClasses, topClasses));
         }
     }
 }
