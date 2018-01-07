@@ -16,6 +16,8 @@ namespace Language_School_Web.Controllers
         {
             IEnumerable<ClassDataDto> allClasses = null;
             IEnumerable<ClassBasicDataDto> topClasses = null;
+            IEnumerable<ClassBasicDataDto> suggestedClasses = null;
+            bool isLoggedInUser = false;
 
             using (var client = new HttpClient())
             {
@@ -61,10 +63,60 @@ namespace Language_School_Web.Controllers
 
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
-                //string accessToken = Request.Cookies["token"].Value;
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+                HttpCookie cookie = Request.Cookies["token"];
+                if (cookie != null)
+                {
+                    string accessToken = cookie.Value;
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+                    responseTask = client.GetAsync("classes/suggested");
+                    responseTask.Wait();
+
+                    result = responseTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readTask = result.Content.ReadAsAsync<IList<ClassBasicDataDto>>();
+                        readTask.Wait();
+
+                        suggestedClasses = readTask.Result;
+                    }
+                    else //web api sent error response 
+                    {
+                        //log response status here..
+
+                        suggestedClasses = Enumerable.Empty<ClassBasicDataDto>();
+
+                        ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                    }
+
+                    isLoggedInUser = true;
+                }
             }
-            return View(Tuple.Create(allClasses, topClasses));
+            return View(Tuple.Create(allClasses, topClasses, suggestedClasses, isLoggedInUser));
+        }
+
+        public ActionResult SignFor(int classId)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchool/api/");
+                string accessToken = Request.Cookies["token"].Value;
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+                var postTask = client.PostAsync("classes/" + classId.ToString(), null);
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+            return Index();
         }
     }
 }

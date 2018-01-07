@@ -1,50 +1,78 @@
-﻿@model Tuple<IEnumerable<LanguageSchool.Models.ClassDataDto>,IEnumerable<LanguageSchool.Models.ClassBasicDataDto>>
+﻿@model Tuple<IEnumerable<LanguageSchool.Models.ClassDataDto>,IEnumerable<LanguageSchool.Models.ClassBasicDataDto>, IEnumerable<LanguageSchool.Models.ClassBasicDataDto>,bool>
 
 @{
     ViewBag.Title = "Classes";
 }
 <!-- Classes Table Card-->
 <div class="container-fluid">
-    <h1>Top Classes</h1>
-    <hr>
     <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-gold o-hidden h-100">
+        <div class="col-lg-6">
+            <div class="card mb-3">
                 <div class="card-body">
-                    <div class="card-body-icon">
-                        <i>1</i>
+                    <div class="mb-0 mt-4">
+                        <i class="fa fa-list-ol"></i> Top list
                     </div>
-                    <div class="mr-5">@Model.Item2.First().ClassName</div>
+                    <hr class="mt-2">
+                    <div class="mb-3">
+                        <div class="card text-white bg-gold o-hidden h-100">
+                            <div class="card-body">
+                                <div class="card-body-icon">
+                                    <i>1</i>
+                                </div>
+                                <div class="mr-5">@Model.Item2.First().ClassName</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="card text-white bg-silver o-hidden h-100">
+                            <div class="card-body">
+                                <div class="card-body-icon">
+                                    <i>2</i>
+                                </div>
+                                <div class="mr-5">@Model.Item2.ElementAt(1).ClassName</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="card text-white bg-bronze o-hidden h-100">
+                            <div class="card-body">
+                                <div class="card-body-icon">
+                                    <i>3</i>
+                                </div>
+                                <div class="mr-5">@Model.Item2.ElementAt(2).ClassName</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-silver o-hidden h-100">
+        @if (Model.Item3 != null && Model.Item3.Count()>0)
+        {
+        <div class="col-lg-6">
+            <div class="card mb-3">
                 <div class="card-body">
-                    <div class="card-body-icon">
-                        <i>2</i>
+                    <div class="mb-0 mt-4">
+                        <i class="fa fa-child"></i> Others also chose...
                     </div>
-                    <div class="mr-5">@Model.Item2.ElementAt(1).ClassName</div>
+                    <hr class="mt-2">
+                    @foreach (var item in Model.Item3)
+                    {
+                    <div class="mb-3">
+                        <div class="card text-dark bg-white o-hidden h-100 border-primary">
+                            <div class="card-body">
+                                <div class="mr-5">@Html.DisplayFor(modelItem => item.ClassName)</div>
+                            </div>
+                        </div>
+                    </div>
+                    }
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-bronze o-hidden h-100">
-                <div class="card-body">
-                    <div class="card-body-icon">
-                        <i>3</i>
-                    </div>
-                    <div class="mr-5">@Model.Item2.ElementAt(2).ClassName</div>
-                </div>
-            </div>
-        </div>
+        }
     </div>
-    <br style="line-height:10"/>
-    <h1>All Classes</h1>
-    <hr>
     <div class="card mb-3">
         <div class="card-header">
-            <i class="fa fa-table"></i> Data Table Example
+            <i class="fa fa-table"></i> All classes
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -54,7 +82,7 @@
                             <th>Name</th>
                             <th>Language</th>
                             <th>Level</th>
-                            <th>Registration State</th>
+                            <th>Registration</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -62,7 +90,7 @@
                             <th>Name</th>
                             <th>Language</th>
                             <th>Level</th>
-                            <th>Registration State</th>
+                            <th>Registration</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -79,7 +107,15 @@
                                     @Html.DisplayFor(modelItem => item.LanguageLevel)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.StudentsCount)/@Html.DisplayFor(modelItem => item.StudentsMax)
+                                    <div>
+                                        @Html.DisplayFor(modelItem => item.StudentsCount)/@Html.DisplayFor(modelItem => item.StudentsMax)
+                                        @if (Model.Item4)
+                                        {
+                                            <a class="btn btn-primary pull-right" href=@Url.Action("SignFor", "Classes", new { classId = item.Id })>
+                                                <i class="fa fa-cart-plus"></i>
+                                            </a>
+                                        }
+                                    </div>
                                 </td>
                             </tr>
                         }
