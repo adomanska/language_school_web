@@ -14,11 +14,12 @@ namespace Language_School_Web.Controllers
         public ActionResult Info()
         {
             StudentDataDto model = null;
+            IEnumerable<ClassBasicDataDto> studentClasses = null;
 
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchool/api/");
-                string accessToken = Request.Cookies["token"].Value;
+                 string accessToken = Request.Cookies["token"].Value;
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 //HTTP GET
                 var responseTask = client.GetAsync("student/info");
@@ -40,12 +41,33 @@ namespace Language_School_Web.Controllers
 
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                responseTask = client.GetAsync("student/classes");
+                responseTask.Wait();
+
+                result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<ClassBasicDataDto>>();
+                    readTask.Wait();
+
+                    studentClasses = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    studentClasses = Enumerable.Empty<ClassBasicDataDto>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
             }
 
-            return View(model);
+            return View(Tuple.Create(model, studentClasses));
         }
 
-        public ActionResult Save(StudentDataDto model, string submitButton)
+        public ActionResult Save([Bind(Prefix = "Item1")] StudentDataDto model, string submitButton)
         {
             if (submitButton == "No")
             {
@@ -59,7 +81,7 @@ namespace Language_School_Web.Controllers
                 string accessToken = Request.Cookies["token"].Value;
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-                //HTTP POST
+                //HTTP PUT
                 if (model.PhoneNumber == null)
                     model.PhoneNumber = "";
                 var postTask = client.PutAsJsonAsync<StudentDataDto>("student/info", model);
@@ -75,6 +97,30 @@ namespace Language_School_Web.Controllers
             ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
             return View(model);
+        }
+
+        public ActionResult DeleteClass(string deleteId)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchool/api/");
+                string accessToken = Request.Cookies["token"].Value;
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+                //HTTP Delete
+                var postTask = client.DeleteAsync("classes/" + deleteId);
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Info");
+                }
+            }
+
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+            return View();
         }
     }
 }

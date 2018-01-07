@@ -61,7 +61,7 @@ namespace Language_School_Web.Controllers
                     //Deserializing the response recieved from web api and storing into the Employee list  
                     token = JsonConvert.DeserializeObject<TokenModel>(response);
                     Response?.SetCookie(new HttpCookie("token", token.Access_Token));
-                    return RedirectToAction("../Home/Index");
+                    return RedirectToAction("../Profile/Info");
                 }
             }
 
