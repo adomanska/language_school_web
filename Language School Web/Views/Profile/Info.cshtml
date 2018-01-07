@@ -80,11 +80,9 @@
     }
 </div>
 <div style="float:right">
-    <h1>All Classes</h1>
-    <hr>
     <div class="card mb-3">
         <div class="card-header">
-            <i class="fa fa-table"></i> Data Table Example
+            <i class="fa fa-table"></i> User Classes
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -94,7 +92,7 @@
                             <th>Name</th>
                             <th>Language</th>
                             <th>Level</th>
-                            <th>Registration State</th>
+                            <th>Delete Registration</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -115,7 +113,6 @@
                                     @using (Html.BeginForm("DeleteClass", "Profile", FormMethod.Post))
                                     {
                                         @Html.Hidden("deleteId", item.Id.ToString())
-                                        @*<button type="submit" name="submitButton" class="btn btn-secondary" style="width:150px" data-dismiss="modal" value="No">No</button>*@
                                         <button type="submit" class="btn btn-primary" style="width:150px">Delete</button>
                                      }
                                 </td>
