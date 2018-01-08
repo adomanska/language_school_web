@@ -96,6 +96,41 @@ namespace Language_School_Web.Controllers
             return View(Tuple.Create(allClasses, topClasses, suggestedClasses, isLoggedInUser));
         }
 
+        public ActionResult Schedule()
+        {
+            IEnumerable<ClassDataDto> userClasses = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchoolWeb/api/");
+                string accessToken = Request.Cookies["token"].Value;
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+                var responseTask = client.GetAsync("student/classes");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<ClassDataDto>>();
+                    readTask.Wait();
+
+                    userClasses = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    userClasses = Enumerable.Empty<ClassDataDto>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+            return View();
+        }
+
         public ActionResult SignFor(int classId)
         {
             using (var client = new HttpClient())

@@ -182,11 +182,22 @@
     <Content Include="js\sb-admin-datatables.min.js" />
     <Content Include="js\sb-admin.js" />
     <Content Include="js\sb-admin.min.js" />
+    <Content Include="ScheduleTemplate\css\reset.css" />
+    <Content Include="ScheduleTemplate\css\style.css" />
+    <Content Include="ScheduleTemplate\js\jquery-3.0.0.min.js" />
+    <Content Include="ScheduleTemplate\js\main.js" />
+    <Content Include="ScheduleTemplate\js\modernizr.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ScheduleTemplate\.DS_Store" />
+    <Content Include="ScheduleTemplate\js\.DS_Store" />
+    <Content Include="ScheduleTemplate\partials\_layout.scss" />
+    <Content Include="ScheduleTemplate\partials\_mixins.scss" />
+    <Content Include="ScheduleTemplate\partials\_variables.scss" />
+    <Content Include="ScheduleTemplate\scss\style.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -204,6 +215,7 @@
     <Content Include="Scripts\sb-admin-datatables.min.js" />
     <Content Include="Scripts\sb-admin.js" />
     <Content Include="Scripts\sb-admin.min.js" />
+    <Content Include="Views\Classes\index.html" />
     <Content Include="WebsiteTemplate\css\sb-admin.css" />
     <Content Include="WebsiteTemplate\css\sb-admin.min.css" />
     <Content Include="WebsiteTemplate\gulpfile.js" />
@@ -322,6 +334,8 @@
     <Content Include="WebsiteTemplate\.travis.yml" />
     <Content Include="WebsiteTemplate\package.json" />
     <Content Include="Views\Profile\Info.cshtml" />
+    <Content Include="Views\Classes\Schedule.cshtml" />
+    <Content Include="Views\Classes\_schedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
