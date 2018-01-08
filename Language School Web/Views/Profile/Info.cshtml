@@ -4,127 +4,131 @@
     ViewBag.Title = "Info";
 }
 
+<div class="form-group">
+    <div class="form-row">
+        <div class="col-md-6">
+            @using (Html.BeginForm("Save", "Profile", FormMethod.Post))
+            {
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>User Profile</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Username</label>
+                        <div class="col-md-4">
+                            @*<input id="textinput" name="textinput" type="text" placeholder="user id" class="form-control input-md">*@
+                            @Html.TextBoxFor(m => Model.Item1.UserName, new { @class = "form-control input-md", @Value = Model.Item1.UserName.ToString(), @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">First Name</label>
+                        <div class="col-md-4">
+                            @*<input id="textinput" name="textinput" type="text" placeholder="your first name" class="form-control input-md" required="">*@
+                            @Html.TextBoxFor(m => Model.Item1.FirstName, new { @class = "form-control input-md", @Value = Model.Item1.FirstName.ToString() })
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Last Name</label>
+                        <div class="col-md-4">
+                            @*<input id="textinput" name="textinput" type="text" placeholder="your last name" class="form-control input-md">*@
+                            @Html.TextBoxFor(m => Model.Item1.LastName, new { @class = "form-control input-md", @Value = Model.Item1.LastName.ToString() })
 
-<div style="width:auto">
-    @using (Html.BeginForm("Save", "Profile", FormMethod.Post))
-        {
-        <fieldset>
-            <!-- Form Name -->
-            <legend>User Profile</legend>
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">Username</label>
-                <div class="col-md-4">
-                    @*<input id="textinput" name="textinput" type="text" placeholder="user id" class="form-control input-md">*@
-                    @Html.TextBoxFor(m => Model.Item1.UserName, new { @class = "form-control input-md", @Value = Model.Item1.UserName.ToString(), @readonly = "readonly" })
-                </div>
-            </div>
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">First Name</label>
-                <div class="col-md-4">
-                    @*<input id="textinput" name="textinput" type="text" placeholder="your first name" class="form-control input-md" required="">*@
-                    @Html.TextBoxFor(m => Model.Item1.FirstName, new { @class = "form-control input-md", @Value = Model.Item1.FirstName.ToString() })
-                </div>
-            </div>
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">Last Name</label>
-                <div class="col-md-4">
-                    @*<input id="textinput" name="textinput" type="text" placeholder="your last name" class="form-control input-md">*@
-                    @Html.TextBoxFor(m => Model.Item1.LastName, new { @class = "form-control input-md", @Value = Model.Item1.LastName.ToString() })
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Email</label>
+                        <div class="col-md-4">
+                            @*<input id="textinput" name="textinput" type="email" placeholder="your email" class="form-control input-md">*@
+                            @Html.TextBoxFor(m => Model.Item1.Email, new { @class = "form-control input-md", @Value = Model.Item1.Email.ToString() })
+                        </div>
+                    </div>
+                    @*<!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Password</label>
+                            <div class="col-md-4">
+                                <input id="textinput" name="textinput" type="text" placeholder="enter your password" class="form-control input-md">
 
-                </div>
-            </div>
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">Email</label>
-                <div class="col-md-4">
-                    @*<input id="textinput" name="textinput" type="email" placeholder="your email" class="form-control input-md">*@
-                    @Html.TextBoxFor(m => Model.Item1.Email, new { @class = "form-control input-md", @Value = Model.Item1.Email.ToString() })
-                </div>
-            </div>
-            @*<!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Password</label>
-                    <div class="col-md-4">
-                        <input id="textinput" name="textinput" type="text" placeholder="enter your password" class="form-control input-md">
+                            </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Confirm Password</label>
+                            <div class="col-md-4">
+                                <input id="textinput" name="textinput" type="text" placeholder="confirm password" class="form-control input-md">
 
+                            </div>
+                        </div>*@
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Phone Number</label>
+                        <div class="col-md-4">
+                            @*<input id="textinput" name="textinput" type="text" placeholder="your phone number" class="form-control input-md" required="">*@
+                            @Html.TextBoxFor(m => Model.Item1.PhoneNumber, new { @class = "form-control input-md", @Value = (Model.Item1.PhoneNumber == null) ? "" : Model.Item1.PhoneNumber.ToString() })
+                        </div>
+                    </div>
+                    <!-- Button (Double) -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="btnsave">Save Changes</label>
+                        <div class="col-md-8">
+                            <button type="submit" name="submitButton" class="btn btn-primary" style="width:150px; margin-right:20px;" value="Yes">Yes</button>
+                            <button type="submit" name="submitButton" class="btn btn-secondary" style="width:150px" data-dismiss="modal" value="No">No</button>
+                        </div>
+                    </div>
+                </fieldset>
+            }
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fa fa-table"></i> User Classes
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="50%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Language</th>
+                                    <th>Level</th>
+                                    <th>Delete Registration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Item2)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ClassName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Language)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LanguageLevel)
+                                        </td>
+                                        <td>
+                                            @using (Html.BeginForm("DeleteClass", "Profile", FormMethod.Post))
+                                            {
+                                                @Html.Hidden("deleteId", item.Id.ToString())
+                                                <button type="submit" class="btn btn-primary" style="width:150px">Delete</button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Confirm Password</label>
-                    <div class="col-md-4">
-                        <input id="textinput" name="textinput" type="text" placeholder="confirm password" class="form-control input-md">
-
-                    </div>
-                </div>*@
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">Phone Number</label>
-                <div class="col-md-4">
-                    @*<input id="textinput" name="textinput" type="text" placeholder="your phone number" class="form-control input-md" required="">*@
-                    @Html.TextBoxFor(m => Model.Item1.PhoneNumber, new { @class = "form-control input-md", @Value = (Model.Item1.PhoneNumber == null) ? "" : Model.Item1.PhoneNumber.ToString() })
-                </div>
-            </div>
-            <!-- Button (Double) -->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="btnsave">Save Changes</label>
-                <div class="col-md-8">
-                    <button type="submit" name="submitButton" class="btn btn-primary" style="width:150px; margin-right:20px;" value="Yes">Yes</button>
-                    <button type="submit" name="submitButton" class="btn btn-secondary" style="width:150px" data-dismiss="modal" value="No">No</button>
-                </div>
-            </div>
-        </fieldset>
-    }
-</div>
-<div style="float:right">
-    <div class="card mb-3">
-        <div class="card-header">
-            <i class="fa fa-table"></i> User Classes
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="50%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Language</th>
-                            <th>Level</th>
-                            <th>Delete Registration</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Item2)
-                        {
-                            
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ClassName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Language)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LanguageLevel)
-                                </td>
-                                <td>
-                                    @using (Html.BeginForm("DeleteClass", "Profile", FormMethod.Post))
-                                    {
-                                        @Html.Hidden("deleteId", item.Id.ToString())
-                                        <button type="submit" class="btn btn-primary" style="width:150px">Delete</button>
-                                     }
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
     </div>
 </div>
+
         
           
 
