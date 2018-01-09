@@ -15,6 +15,7 @@ namespace Language_School_Web.Controllers
         {
             StudentDataDto model = null;
             IEnumerable<ClassBasicDataDto> studentClasses = null;
+            string charge = "?";
 
             using (var client = new HttpClient())
             {
@@ -62,9 +63,29 @@ namespace Language_School_Web.Controllers
 
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
+
+                responseTask = client.GetAsync("student/charge");
+                responseTask.Wait();
+
+                result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<string>();
+                    readTask.Wait();
+
+                    charge = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    charge = "?";
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
             }
 
-            return View(Tuple.Create(model, studentClasses));
+            return View(Tuple.Create(model, studentClasses, charge));
         }
 
         public ActionResult Save([Bind(Prefix = "Item1")] StudentDataDto model, string submitButton)

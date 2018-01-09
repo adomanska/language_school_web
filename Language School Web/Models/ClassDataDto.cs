@@ -14,6 +14,7 @@ namespace LanguageSchool.Models
         public string LanguageLevel { get; set; }
         public int StudentsCount { get; set; }
         public int StudentsMax { get; set; }
+        public string DayOfWeek { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
         public string Price { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -99,6 +100,7 @@ namespace Language_School_Web.Controllers
         public ActionResult Schedule()
         {
             IEnumerable<ClassDataDto> userClasses = null;
+            IEnumerable<ScheduleDay> scheduleDays = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchoolWeb/api/");
@@ -115,6 +117,8 @@ namespace Language_School_Web.Controllers
                     readTask.Wait();
 
                     userClasses = readTask.Result;
+                    scheduleDays = userClasses.GroupBy(c => c.DayOfWeek)
+                        .Select(group => new ScheduleDay(){ Day = group.Key, Items = group.ToList() });
                 }
                 else //web api sent error response 
                 {
@@ -128,7 +132,7 @@ namespace Language_School_Web.Controllers
 
             ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
-            return View();
+            return View(scheduleDays);
         }
 
         public ActionResult SignFor(int classId)

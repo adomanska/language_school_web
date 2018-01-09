@@ -82,6 +82,8 @@
                             <th>Name</th>
                             <th>Language</th>
                             <th>Level</th>
+                            <th>Date</th>
+                            <th>Price</th>
                             <th>Registration</th>
                         </tr>
                     </thead>
@@ -90,34 +92,48 @@
                             <th>Name</th>
                             <th>Language</th>
                             <th>Level</th>
+                            <th>Date</th>
+                            <th>Price</th>
                             <th>Registration</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         @foreach (var item in Model.Item1)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ClassName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Language)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LanguageLevel)
-                                </td>
-                                <td>
-                                    <div>
-                                        @Html.DisplayFor(modelItem => item.StudentsCount)/@Html.DisplayFor(modelItem => item.StudentsMax)
-                                        @if (Model.Item4)
-                                        {
-                                            <a class="btn btn-primary pull-right" href=@Url.Action("SignFor", "Classes", new { classId = item.Id })>
-                                                <i class="fa fa-cart-plus"></i>
-                                            </a>
-                                        }
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ClassName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Language)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LanguageLevel)
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DisplayFor(modelItem => item.DayOfWeek)
+                                    <br />
+                                    @Html.DisplayFor(modelItem => item.StartTime)
+                                    <i class="fa fa-long-arrow-right"></i>
+                                    @Html.DisplayFor(modelItem => item.EndTime)
+                                </div>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DisplayFor(modelItem => item.StudentsCount)/@Html.DisplayFor(modelItem => item.StudentsMax)
+                                    @if (Model.Item4)
+                                    {
+                                        <a class="btn btn-primary pull-right" href=@Url.Action("SignFor", "Classes", new { classId = item.Id })>
+                                            <i class="fa fa-cart-plus"></i>
+                                        </a>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
