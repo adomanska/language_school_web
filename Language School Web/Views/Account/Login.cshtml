@@ -31,6 +31,7 @@
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+ 
 </head>
 
 <body class="bg-dark">
@@ -60,6 +61,12 @@
                             </label>
                         </div>
                     </div>*@
+                    <div class="form-group" style="text-align:center">
+                        @if (@ViewBag.NotValidUser != null)
+                        {
+                            <textbox style="color:#a94442" > @ViewBag.NotValidUser</textbox>
+                        }
+                    </div>
                     <input type="submit" value="Login" class="btn btn-primary btn-block"/>
                 }
                 <div class="text-center">

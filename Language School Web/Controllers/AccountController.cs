@@ -60,14 +60,24 @@ namespace Language_School_Web.Controllers
 
                     //Deserializing the response recieved from web api and storing into the Employee list  
                     token = JsonConvert.DeserializeObject<TokenModel>(response);
-                    Response?.SetCookie(new HttpCookie("token", token.Access_Token));
+                    HttpCookie cookie = new HttpCookie("token", token.Access_Token);
+                    cookie.Expires = DateTime.Now.AddDays(5);
+                    Response?.SetCookie(cookie);
                     return RedirectToAction("../Profile/Info");
                 }
+                else
+                    ViewBag.NotValidUser = "Incorrect username or password";
             }
 
             ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
             return View(model);
+        }
+
+        public ActionResult LogOff()
+        {
+            Response?.SetCookie(new HttpCookie("token") { Expires = DateTime.Now.AddDays(-1) }); //ciastko wygasa
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -95,6 +105,8 @@ namespace Language_School_Web.Controllers
                 {
                     return RedirectToAction("Login");
                 }
+                else
+                    ViewBag.NotValidUser = "User with such email or username already exists";
             }
 
             ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");

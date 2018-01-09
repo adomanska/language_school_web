@@ -87,6 +87,12 @@
                             </div>
                         </div>
                         @*</div>*@
+                        <div class="form-group" style="text-align:center">
+                            @if (@ViewBag.NotValidUser != null)
+                            {
+                                <textbox style="color:#a94442"> @ViewBag.NotValidUser</textbox>
+                            }
+                        </div>
                         <input type="submit" value="Register" class="btn btn-primary btn-block" />
                     }
                     <div class="text-center">
