@@ -1,4 +1,69 @@
-﻿@{
+﻿@model LanguageSchool.Models.StudentDataDto
+
+@{
     ViewBag.Title = "Home Page";
 }
 
+<div class="row mt-5">
+    <div class="col-md-6">
+        <img class="card-img-top img-fluid w-100 m-3" src="https://blog.apaonline.org/wp-content/uploads/2016/09/hello-in-foreign-languages.png" alt="">
+    </div>
+    <div class="col-md-6">
+        <div class="m-5">
+            @if (Model == null)
+            {
+            <h1 class="ml-5">New to Language School?</h1>
+            <ul class="navbar-nav ml-5 mt-3">
+                <li>
+                    <h5 class="text-secondary">
+                        <i class="fa fa-chevron-right text-primary"></i>
+                        Check our <a href="@Url.Action("Index", "Classes")">offer</a>
+                    </h5>
+                </li>
+                <li>
+                    <h5 class="text-secondary">
+                        <i class="fa fa-chevron-right text-primary"></i>
+                        Questions? <a href="@Url.Action("Contact", "Home")">Contact</a> us
+                    </h5>
+                </li>
+                <li>
+                    <h5 class="text-secondary">
+                        <i class="fa fa-chevron-right text-primary"></i>
+                        Wanna join us? <a href="@Url.Action("Register", "Account")">Sign up!</a>
+                    </h5>
+                </li>
+            </ul>
+            }
+            else
+            {
+            <h1 class="ml-5">Hello @Html.DisplayFor(modelItem => Model.FirstName)!</h1>
+            <ul class="navbar-nav ml-5 mt-3">
+                <li>
+                    <h5 class="text-secondary">
+                        <i class="fa fa-chevron-right text-primary"></i>
+                        Check suggestions and new classses in our offer
+                    </h5>
+                </li>
+                <li>
+                    <h5 class="text-secondary">
+                        <i class="fa fa-chevron-right text-primary"></i>
+                        Manage your classes
+                    </h5>
+                </li>
+                <li>
+                    <h5 class="text-secondary">
+                        <i class="fa fa-chevron-right text-primary"></i>
+                        Meet your classmates
+                    </h5>
+                </li>
+                <li>
+                    <h5 class="text-secondary">
+                        <i class="fa fa-chevron-right text-primary"></i>
+                        Learn foreign languages with us
+                    </h5>
+                </li>
+            </ul>
+            }
+        </div>
+    </div>
+</div>

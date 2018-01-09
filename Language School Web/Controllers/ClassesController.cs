@@ -18,6 +18,7 @@ namespace Language_School_Web.Controllers
             IEnumerable<ClassDataDto> allClasses = null;
             IEnumerable<ClassBasicDataDto> topClasses = null;
             IEnumerable<ClassBasicDataDto> suggestedClasses = null;
+            IEnumerable<ClassBasicDataDto> studentClasses = null;
             bool isLoggedInUser = false;
 
             using (var client = new HttpClient())
@@ -91,6 +92,28 @@ namespace Language_School_Web.Controllers
                         ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                     }
 
+                    responseTask = client.GetAsync("student/classes");
+                    responseTask.Wait();
+
+                    result = responseTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readTask = result.Content.ReadAsAsync<IList<ClassBasicDataDto>>();
+                        readTask.Wait();
+
+                        studentClasses = readTask.Result;
+                    }
+                    else //web api sent error response 
+                    {
+                        //log response status here..
+
+                        studentClasses = Enumerable.Empty<ClassBasicDataDto>();
+
+                        ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                    }
+
+                    var studentClassesIds = studentClasses.Select(c => c.Id);
+                    allClasses = allClasses.Where(c => !studentClassesIds.Contains(c.Id));
                     isLoggedInUser = true;
                 }
             }
