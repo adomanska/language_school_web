@@ -115,11 +115,13 @@ jQuery(document).ready(function($){
         this.modalHeader.find('.event-date').text(event.find('.event-date').text());
 		this.modal.attr('data-event', event.parent().attr('data-event'));
 
+        //this.modalBody.find('.event-info').find('.part').text(event.find('.event-info').text());
+        self.element.addClass('content-loaded');
 		//update event content
-		this.modalBody.find('.event-info').load(event.parent().attr('data-content')+'.html .event-info > *', function(data){
-			//once the event content has been loaded
-			self.element.addClass('content-loaded');
-		});
+		//this.modalBody.find('.event-info').load(event.parent().attr('data-content')+'.html .event-info > *', function(data){
+		//	//once the event content has been loaded
+		//	self.element.addClass('content-loaded');
+		//});
 
 		this.element.addClass('modal-is-open');
 

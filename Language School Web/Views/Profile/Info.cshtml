@@ -1,5 +1,5 @@
 ﻿@using LanguageSchool.Models;
-@model Tuple<StudentDataDto, IEnumerable<ClassBasicDataDto>, string>
+@model Tuple<StudentDataDto, IEnumerable<Tuple<ClassBasicDataDto, IEnumerable<StudentBasicDataDto>>>, string>
 @{
     ViewBag.Title = "Info";
 }
@@ -95,65 +95,109 @@
                 </div>
             </div>
             @*<div class="card mb-3">*@
-                @*<div class="card-header">
-                        <i class="fa fa-table"></i> User Classes
-                    </div>*@
-                <div class="card-body mb-0">
-                    <div class="mb-0 mt-4">
-                        <i class="fa fa-list"></i> Your classes
-                    </div>
-                    <div>
-                        <table class="table table-bordered" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Language</th>
-                                    <th>Level</th>
-                                    <th>Delete Registration</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.Item2)
-                                {
-
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ClassName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Language)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.LanguageLevel)
-                                        </td>
-                                        <td>
-                                            @using (Html.BeginForm("DeleteClass", "Profile", FormMethod.Post))
-                                            {
-                                                @Html.Hidden("deleteId", item.Id.ToString())
-                                                <button type="submit" class="btn btn-primary" style="width:150px">Delete</button>
-                                            }
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+            @*<div class="card-header">
+                    <i class="fa fa-table"></i> User Classes
+                </div>*@
+            <div class="card-body mb-0">
+                <div class="mb-0 mt-4">
+                    <i class="fa fa-list"></i> Your classes
                 </div>
+                <div>
+                    <table class="table table-bordered" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Language</th>
+                                <th>Level</th>
+                                <th>Delete Registration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Item2)
+                            {
+
+                                <tr>
+                                    <td>
+                                        <a class="open-ListModal" data-toggle="modal" href="#listModal" id="@item.Item1.Id">
+                                            @Html.DisplayFor(modelItem => item.Item1.ClassName)
+                                            <div id="@String.Format("students{0}", item.Item1.Id)" style="display:none">
+                                                <ol>
+                                                    @foreach (var s in item.Item2)
+                                                    {
+                                                    <li>@s.FirstName @s.LastName</li>
+                                                    }
+                                                </ol>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Item1.Language)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Item1.LanguageLevel)
+                                    </td>
+                                    <td>
+                                        @using (Html.BeginForm("DeleteClass", "Profile", FormMethod.Post))
+                                        {
+                                            @Html.Hidden("deleteId", item.Item1.Id.ToString())
+                                            <button type="submit" class="btn btn-primary" style="width:150px">Delete</button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             @*</div>*@
         </div>
     </div>
 </div>
-    
+ <!--The modal-->
+<div class="modal fade" id="listModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Students list</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="students-list"></div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            </div>
+
+        </div>
+    </div>
+</div>
+@*<div class="modal" id="addBookDialog">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>Modal header</h3>
+    </div>
+    <div class="modal-body">
+        <p id="idSet"></p>
+        @{ }
+        <input type="text" name="bookId" id="bookId" value="" />
+    </div>
+</div>*@
 
 
 
-        
-          
 
 
 
 
 
-    
+
+
+
+
 
 

@@ -27,7 +27,7 @@
             </button>*@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 @if (isUserLoggedIn)
-                {
+            {
                 <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Home">
                         <a class="nav-link" href="@Url.Action("Index", "Home")">
@@ -67,7 +67,7 @@
                         </a>
                     </li>
                 </ul>
-                }
+        }
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <form class="form-inline my-2 my-lg-0 mr-lg-2">
@@ -82,26 +82,26 @@
                         </form>
                     </li>
                     @if (isUserLoggedIn)
-                    {
+                {
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                             <i class="fa fa-fw fa-sign-out"></i>Logout
                         </a>
                     </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Login","Account")">
-                                <i class="fa fa-fw fa-sign-in"></i>Login
-                            </a>
-                        </li>
-                    }
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Login","Account")">
+                        <i class="fa fa-fw fa-sign-in"></i>Login
+                    </a>
+                </li>
+        }
                 </ul>
             </div>
         </nav>
         @if (isUserLoggedIn)
-        {
+    {
         <div class="content-wrapper">
             <div class="container-fluid">
                 <div class="row">
@@ -111,19 +111,19 @@
                 </div>
             </div>
         </div>
-        }
-        else
-        {
-            <div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            @RenderBody()
-                        </div>
-                    </div>
+}
+else
+{
+    <div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    @RenderBody()
                 </div>
             </div>
-        }
+        </div>
+    </div>
+}
         <!-- /.container-fluid-->
         <!-- /.content-wrapper-->
         <footer class="width-100 sticky-footer">
@@ -166,6 +166,7 @@
         <script src="~/WebsiteTemplate/vendor/datatables/dataTables.bootstrap4.js"></script>
         <!-- Custom scripts for all pages-->
         <script src="~/WebsiteTemplate/js/sb-admin.min.js"></script>
+        <script src="~/WebsiteTemplate/js/sb-admin.js"></script>
         <!-- Custom scripts for this page-->
         <script src="~/WebsiteTemplate/js/sb-admin-datatables.min.js"></script>
         <script src="~/WebsiteTemplate/js/sb-admin-charts.min.js"></script>

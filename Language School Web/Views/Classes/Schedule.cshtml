@@ -54,6 +54,14 @@
                                     <li class="single-event" data-start=@item.StartTime data-end=@item.EndTime data-event=@String.Format("event-{0}",i%4+1)>
                                         <a href="#0">
                                             <em class="event-name">@item.ClassName</em>
+                                            @*<div class="event-info m-5">
+                                                <h2>Participants:</h2>
+                                                <ul>
+                                                    <li>Blah</li>
+                                                    <li>Blah</li>
+                                                    <li>Blah</li>
+                                                </ul>
+                                            </div>*@
                                         </a>
                                     </li>
                                     i++;
@@ -181,11 +189,14 @@
                 <div class="content">
                     <span class="event-date"></span>
                     <h3 class="event-name"></h3>
+                    
                 </div>
                 <div class="header-bg"></div>
             </header>
             <div class="body">
-                <div class="event-info"></div>
+                <div class="event-info">
+                    @*<h1 class="ml-2">Students list</h1>*@
+                </div>
                 <div class="body-bg"></div>
             </div>
             <a href="#0" class="close">Close</a>

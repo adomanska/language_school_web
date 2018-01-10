@@ -42,4 +42,20 @@
     }, 1000, 'easeInOutExpo');
     event.preventDefault();
   });
+  //Open students list modal
+  //$(document).on("click", ".open-ListModal", function (e) {
+     
+  //    //$(".modal-body").append($("#testDiv").children());
+  //    $('#listModal').modal('show');
+  //});
+  $('#listModal').on('show.bs.modal', function (e) {
+      var $invoker = $(e.relatedTarget);
+      //$(".modal-body #bookId").val(myBookId);
+      //$(".modal-body #idSet").text(myBookId);
+      var $invoker = $(e.relatedTarget);
+      var $div = "#students" + $invoker.attr('id');
+      var $elems = $($div).children();
+      $(".students-list").children().remove();
+      $(".students-list").append($elems.clone());
+  });
 })(jQuery); // End of use strict
