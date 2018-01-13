@@ -8,7 +8,7 @@
     <hr class="mt-2">
     <div class="row">
         <div class="col-lg-6">
-            @using (Html.BeginForm("Save", "Profile", FormMethod.Post))
+            @using (Html.BeginForm("Save", "Profile", FormMethod.Post, new { data_toggle = "validator", role = "form" }))
             {
                 <fieldset>
                     <!-- Form Name -->
@@ -26,7 +26,8 @@
                         <label class="col-md-8 control-label" for="textinput">First Name</label>
                         <div class="col-md-8">
                             @*<input id="textinput" name="textinput" type="text" placeholder="your first name" class="form-control input-md" required="">*@
-                            @Html.TextBoxFor(m => Model.Item1.FirstName, new { @class = "form-control input-md", @Value = Model.Item1.FirstName.ToString() })
+                            @Html.TextBoxFor(m => Model.Item1.FirstName, new { @class = "form-control input-md", @Value = Model.Item1.FirstName.ToString(), pattern = "^[A-Z][a-z]+$", required = "required", data_error = "First name is invalid" })
+                            <div class="help-block with-errors" style="color:#a94442"></div>
                         </div>
                     </div>
                     <!-- Text input-->
@@ -34,8 +35,8 @@
                         <label class="col-md-8 control-label" for="textinput">Last Name</label>
                         <div class="col-md-8">
                             @*<input id="textinput" name="textinput" type="text" placeholder="your last name" class="form-control input-md">*@
-                            @Html.TextBoxFor(m => Model.Item1.LastName, new { @class = "form-control input-md", @Value = Model.Item1.LastName.ToString() })
-
+                            @Html.TextBoxFor(m => Model.Item1.LastName, new { @class = "form-control input-md", @Value = Model.Item1.LastName.ToString(), pattern = "^[A-Z][a-z]+$", required = "required", data_error = "Last name is invalid" })
+                            <div class="help-block with-errors" style="color:#a94442"></div>
                         </div>
                     </div>
                     <!-- Text input-->
@@ -43,7 +44,8 @@
                         <label class="col-md-8 control-label" for="textinput">Email</label>
                         <div class="col-md-8">
                             @*<input id="textinput" name="textinput" type="email" placeholder="your email" class="form-control input-md">*@
-                            @Html.TextBoxFor(m => Model.Item1.Email, new { @class = "form-control input-md", @Value = Model.Item1.Email.ToString() })
+                            @Html.TextBoxFor(m => Model.Item1.Email, new { @class = "form-control input-md", @Value = Model.Item1.Email.ToString(), type = "email", data_error = "Email address is invalid", required = "required" })
+                            <div class="help-block with-errors" style="color:#a94442"></div>
                         </div>
                     </div>
                     @*<!-- Text input-->
@@ -67,7 +69,8 @@
                         <label class="col-md-8 control-label" for="textinput">Phone Number</label>
                         <div class="col-md-8">
                             @*<input id="textinput" name="textinput" type="text" placeholder="your phone number" class="form-control input-md" required="">*@
-                            @Html.TextBoxFor(m => Model.Item1.PhoneNumber, new { @class = "form-control input-md", @Value = (Model.Item1.PhoneNumber == null) ? "" : Model.Item1.PhoneNumber.ToString() })
+                            @Html.TextBoxFor(m => Model.Item1.PhoneNumber, new { @class = "form-control input-md", @Value = (Model.Item1.PhoneNumber == null) ? "" : Model.Item1.PhoneNumber.ToString(), pattern = "^[0-9]{9}", data_error = "Phone number is invalid" })
+                            <div class="help-block with-errors" style="color:#a94442"></div>
                         </div>
                     </div>
                     <!-- Button (Double) -->
@@ -81,7 +84,6 @@
                 </fieldset>
             }
         </div>
-        <script src="~/WebsiteTemplate/js/validation.js"></script>
         <div class="col-6">
             <div class="row">
                 <div class="col-lg-7"></div>
@@ -109,7 +111,7 @@
                                 <th>Name</th>
                                 <th>Language</th>
                                 <th>Level</th>
-                                <th>Delete Registration</th>
+                                <th>Unsubscribe</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -124,7 +126,7 @@
                                                 <ol>
                                                     @foreach (var s in item.Item2)
                                                     {
-                                                    <li>@s.FirstName @s.LastName</li>
+                                                        <li>@s.FirstName @s.LastName</li>
                                                     }
                                                 </ol>
                                             </div>
@@ -140,7 +142,9 @@
                                         @using (Html.BeginForm("DeleteClass", "Profile", FormMethod.Post))
                                         {
                                             @Html.Hidden("deleteId", item.Item1.Id.ToString())
-                                            <button type="submit" class="btn btn-primary" style="width:150px">Delete</button>
+                                            <button type="submit" class="btn btn-primary center-block" style="margin:auto; display:block">
+                                                <i class="fa fa-remove"></i>
+                                            </button>
                                         }
                                     </td>
                                 </tr>
@@ -153,7 +157,7 @@
         </div>
     </div>
 </div>
- <!--The modal-->
+<!--The modal-->
 <div class="modal fade" id="listModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -177,27 +181,13 @@
     </div>
 </div>
 @*<div class="modal" id="addBookDialog">
-    <div class="modal-header">
-        <button class="close" data-dismiss="modal">×</button>
-        <h3>Modal header</h3>
-    </div>
-    <div class="modal-body">
-        <p id="idSet"></p>
-        @{ }
-        <input type="text" name="bookId" id="bookId" value="" />
-    </div>
-</div>*@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>Modal header</h3>
+        </div>
+        <div class="modal-body">
+            <p id="idSet"></p>
+            @{ }
+            <input type="text" name="bookId" id="bookId" value="" />
+        </div>
+    </div>*@

@@ -172,10 +172,39 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bootstrap-validator\dist\validator.js" />
+    <Content Include="bootstrap-validator\dist\validator.min.js" />
+    <Content Include="bootstrap-validator\docs\assets\css\docs.css" />
+    <Content Include="bootstrap-validator\docs\assets\css\pygments-manni.css" />
+    <Content Include="bootstrap-validator\docs\assets\ico\apple-touch-icon-144-precomposed.png" />
+    <Content Include="bootstrap-validator\docs\assets\ico\favicon.png" />
+    <Content Include="bootstrap-validator\docs\assets\js\application.js" />
+    <Content Include="bootstrap-validator\docs\dist\validator.js" />
+    <Content Include="bootstrap-validator\docs\dist\validator.min.js" />
+    <Content Include="bootstrap-validator\docs\index.html" />
+    <Content Include="bootstrap-validator\docs\_includes\ads.html" />
+    <Content Include="bootstrap-validator\docs\_includes\footer.html" />
+    <Content Include="bootstrap-validator\docs\_includes\header.html" />
+    <Content Include="bootstrap-validator\docs\_includes\nav-main.html" />
+    <Content Include="bootstrap-validator\docs\_includes\nav-validator.html" />
+    <Content Include="bootstrap-validator\docs\_includes\social-buttons.html" />
+    <Content Include="bootstrap-validator\docs\_layouts\default.html" />
+    <Content Include="bootstrap-validator\Gruntfile.js" />
+    <Content Include="bootstrap-validator\js\tests\index-jquery-1.10.2.html" />
+    <Content Include="bootstrap-validator\js\tests\index-jquery-3.1.1.html" />
+    <Content Include="bootstrap-validator\js\tests\unit\phantom.js" />
+    <Content Include="bootstrap-validator\js\tests\unit\validator.js" />
+    <Content Include="bootstrap-validator\js\tests\vendor\jquery-1.10.2.js" />
+    <Content Include="bootstrap-validator\js\tests\vendor\jquery-3.1.1.js" />
+    <Content Include="bootstrap-validator\js\tests\vendor\jquery.mockjax.js" />
+    <Content Include="bootstrap-validator\js\tests\vendor\qunit.css" />
+    <Content Include="bootstrap-validator\js\tests\vendor\qunit.js" />
+    <Content Include="bootstrap-validator\js\validator.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\contact.css" />
     <Content Include="Content\sb-admin.css" />
     <Content Include="Content\sb-admin.min.css" />
     <Content Include="favicon.ico" />
@@ -198,6 +227,15 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="bootstrap-validator\.gitignore" />
+    <Content Include="bootstrap-validator\bower.json" />
+    <Content Include="bootstrap-validator\CHANGELOG.md" />
+    <Content Include="bootstrap-validator\docs\LICENSE" />
+    <Content Include="bootstrap-validator\js\.jshintrc" />
+    <Content Include="bootstrap-validator\LICENSE" />
+    <Content Include="bootstrap-validator\package.json" />
+    <Content Include="bootstrap-validator\README.md" />
+    <Content Include="bootstrap-validator\_config.yml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
