@@ -4,9 +4,12 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using LanguageSchool.Models;
+using Microsoft.Win32;
+using SelectPdf;
 
 namespace Language_School_Web.Controllers
 {
@@ -179,6 +182,34 @@ namespace Language_School_Web.Controllers
             ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
             return Index();
+        }
+
+        public ActionResult GetPdf()
+        {
+            HtmlToPdf converter = new HtmlToPdf();
+            converter.Options.HttpCookies.Add("token", Request.Cookies["token"].Value);
+            converter.Options.PdfPageSize = PdfPageSize.A4;
+            converter.Options.PdfPageOrientation = PdfPageOrientation.Landscape;
+            converter.Options.MarginLeft = 0;
+            converter.Options.MarginRight = 0;
+            converter.Options.MarginTop = 0;
+            converter.Options.MarginBottom = 0;
+            // create a new pdf document converting an url
+            PdfDocument doc = converter.ConvertUrl("http://localhost:53091/Classes/Schedule");
+            DateTime now = DateTime.Now;
+            string fileName = "/Schedule" + now.Year.ToString() + now.Month.ToString() + now.Day.ToString() + now.Hour.ToString() + now.Minute.ToString() + now.Second.ToString() + ".pdf";
+            doc.Save(getDownloadFolderPath() + fileName);
+
+            // close pdf document
+            doc.Close();
+
+            return View();
+        }
+
+
+        string getDownloadFolderPath()
+        {
+            return Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", String.Empty).ToString();
         }
     }
 }
