@@ -58,7 +58,7 @@ namespace Language_School_Web.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return View("~/Views/Home/Contact.cshtml");
         }
 
         

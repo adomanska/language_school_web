@@ -21,7 +21,16 @@ namespace Language_School_Web.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchoolWeb/api/");
-                 string accessToken = Request.Cookies["token"].Value;
+                string accessToken = null;
+                try
+                {
+                    accessToken = Request.Cookies["token"].Value;
+                }
+                catch
+                {
+                    return View("~/Views/Shared/AccessDenied.cshtml");
+                }
+                
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 //HTTP GET
                 var responseTask = client.GetAsync("student/info");
@@ -100,7 +109,15 @@ namespace Language_School_Web.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchoolWeb/api/");
-                string accessToken = Request.Cookies["token"].Value;
+                string accessToken = null;
+                try
+                {
+                    accessToken = Request.Cookies["token"].Value;
+                }
+                catch
+                {
+                    return View("~/Views/Shared/AccessDenied.cshtml");
+                }
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
                 //HTTP PUT
@@ -126,7 +143,15 @@ namespace Language_School_Web.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchoolWeb/api/");
-                string accessToken = Request.Cookies["token"].Value;
+                string accessToken = null;
+                try
+                {
+                    accessToken = Request.Cookies["token"].Value;
+                }
+                catch
+                {
+                    return View("~/Views/Shared/AccessDenied.cshtml");
+                }
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
                 //HTTP Delete
