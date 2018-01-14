@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Schedule";
+}
+
+<row>
+    <a class="btn btn-primary" href="@Url.Action("GetPdf", "Classes")">
+        <i class="fa fa-fw fa-download"></i>
+        <span class="nav-link-text">Download Schedule</span>
+    </a>
+</row>
+<div class="fluidMedia">
+    <iframe src="@Url.Action("Schedule","Classes")" frameborder="0" scrolling="no"></iframe>
+</div>
+

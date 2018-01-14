@@ -279,6 +279,7 @@ Main Components
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 85% !important;
 }
 
 .cd-schedule .event-name {

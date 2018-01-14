@@ -19,112 +19,102 @@
         <link href='//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet' />
     </head>
     <body class="fixed-nav sticky-footer " id="page-top">
-        <!--bg-dark, żeby dodać sidebar-->
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">Language School</a>
-            @*<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>*@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 @if (isUserLoggedIn)
-            {
-                <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Home">
-                        <a class="nav-link" href="@Url.Action("Index", "Home")">
-                            <i class="fa fa-fw fa-home"></i>
-                            <span class="nav-link-text">Home</span>
-                        </a>
-                    </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Profile">
-                        <a class="nav-link" href="@Url.Action("Info", "Profile")">
-                            <i class="fa fa-fw fa-user"></i>
-                            <span class="nav-link-text">Profile</span>
-                        </a>
-                    </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Profile">
-                        <a class="nav-link" href="@Url.Action("Schedule", "Classes")">
-                            <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text">Schedule</span>
-                        </a>
-                    </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Profile">
-                        <a class="nav-link" href="@Url.Action("GetPdf", "Classes")">
-                            <i class="fa fa-fw fa-download"></i>
-                            <span class="nav-link-text">Download Schedule</span>
-                        </a>
-                    </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contact">
-                        <a class="nav-link" href="@Url.Action("Contact", "Home")">
-                            <i class="fa fa-fw fa-mobile-phone"></i>
-                            <span class="nav-link-text">Contact</span>
-                        </a>
-                    </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Classes">
-                        <a class="nav-link" href="@Url.Action("Index", "Classes")">
-                            <i class="fa fa-fw fa-graduation-cap"></i>
-                            <span class="nav-link-text">Classes</span>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav sidenav-toggler">
-                    <li class="nav-item">
-                        <a class="nav-link text-center" id="sidenavToggler">
-                            <i class="fa fa-fw fa-angle-left"></i>
-                        </a>
-                    </li>
-                </ul>
-        }
+                {
+                    <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Home">
+                            <a class="nav-link" href="@Url.Action("Index", "Home")">
+                                <i class="fa fa-fw fa-home"></i>
+                                <span class="nav-link-text">Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Profile">
+                            <a class="nav-link" href="@Url.Action("Info", "Profile")">
+                                <i class="fa fa-fw fa-user"></i>
+                                <span class="nav-link-text">Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Profile">
+                            <a class="nav-link" href="@Url.Action("ScheduleView", "Classes")">
+                                <i class="fa fa-fw fa-table"></i>
+                                <span class="nav-link-text">Schedule</span>
+                            </a>
+                        </li>
+                    
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contact">
+                            <a class="nav-link" href="@Url.Action("Contact", "Home")">
+                                <i class="fa fa-fw fa-mobile-phone"></i>
+                                <span class="nav-link-text">Contact</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Classes">
+                            <a class="nav-link" href="@Url.Action("Index", "Classes")">
+                                <i class="fa fa-fw fa-graduation-cap"></i>
+                                <span class="nav-link-text">Classes</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav sidenav-toggler">
+                        <li class="nav-item">
+                            <a class="nav-link text-center" id="sidenavToggler">
+                                <i class="fa fa-fw fa-angle-left"></i>
+                            </a>
+                        </li>
+                    </ul>
+                }
                 <ul class="navbar-nav ml-auto">
                     @if (isUserLoggedIn)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                            <i class="fa fa-fw fa-sign-out"></i>Logout
-                        </a>
-                    </li>
-            }
-            else
-            {
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Login","Account")">
-                        <i class="fa fa-fw fa-sign-in"></i>Login
-                    </a>
-                </li>
-        }
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                                <i class="fa fa-fw fa-sign-out"></i>Logout
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Login","Account")">
+                                <i class="fa fa-fw fa-sign-in"></i>Login
+                            </a>
+                        </li>
+                    }
                 </ul>
             </div>
         </nav>
         @if (isUserLoggedIn)
-    {
-        <div class="content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        @RenderBody()
+        {
+            <div class="content-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            @RenderBody()
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-}
-else
-{
-    <div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    @RenderBody()
+        }
+        else
+        {
+            <div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            @RenderBody()
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-}
-        <!-- /.container-fluid-->
-        <!-- /.content-wrapper-->
+        }
+        <!--Footer-->
         <footer class="width-100 sticky-footer">
             <div class="container">
                 <div class="text-center">
-                    <small>Copyright © Your Website 2017</small>
+                    <small>Copyright © Language School 2018</small>
                 </div>
             </div>
         </footer>

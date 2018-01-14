@@ -23,8 +23,8 @@ jQuery(document).ready(function($){
 		this.modal = this.element.find('.event-modal');
 		this.modalHeader = this.modal.find('.header');
 		this.modalHeaderBg = this.modal.find('.header-bg');
-		this.modalBody = this.modal.find('.body'); 
-		this.modalBodyBg = this.modal.find('.body-bg'); 
+		//this.modalBody = this.modal.find('.body'); 
+		//this.modalBodyBg = this.modal.find('.body-bg'); 
 		this.modalMaxWidth = 800;
 		this.modalMaxHeight = 480;
 
@@ -69,11 +69,11 @@ jQuery(document).ready(function($){
 			var durationLabel = '<span class="event-date">'+$(this).data('start')+' - '+$(this).data('end')+'</span>';
 			$(this).children('a').prepend($(durationLabel));
 
-			//detect click on the event and open the modal
-			$(this).on('click', 'a', function(event){
-				event.preventDefault();
-				if( !self.animating ) self.openModal($(this));
-			});
+			////detect click on the event and open the modal
+			//$(this).on('click', 'a', function(event){
+			//	event.preventDefault();
+			//	if( !self.animating ) self.openModal($(this));
+			//});
 		});
 
 		//close modal window

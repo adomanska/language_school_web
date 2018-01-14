@@ -27,8 +27,6 @@ namespace Language_School_Web.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchoolWeb/api/");
-
-                //HTTP GET
                 var responseTask = client.GetAsync("classes");
                 responseTask.Wait();
 
@@ -40,14 +38,8 @@ namespace Language_School_Web.Controllers
 
                     allClasses = readTask.Result;
                 }
-                else //web api sent error response 
-                {
-                    //log response status here..
-
-                    allClasses = Enumerable.Empty<ClassDataDto>();
-
-                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-                }
+                else
+                    return View("~/Views/Shared/Error.cshtml");
 
                 responseTask = client.GetAsync("classes/top/3");
                 responseTask.Wait();
@@ -57,17 +49,10 @@ namespace Language_School_Web.Controllers
                 {
                     var readTask = result.Content.ReadAsAsync<IList<ClassBasicDataDto>>();
                     readTask.Wait();
-
                     topClasses = readTask.Result;
                 }
-                else //web api sent error response 
-                {
-                    //log response status here..
-
-                    topClasses = Enumerable.Empty<ClassBasicDataDto>();
-
-                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-                }
+                else
+                    return View("~/Views/Shared/Error.cshtml");
 
                 HttpCookie cookie = Request.Cookies["token"];
                 if (cookie != null)
@@ -86,14 +71,8 @@ namespace Language_School_Web.Controllers
 
                         suggestedClasses = readTask.Result;
                     }
-                    else //web api sent error response 
-                    {
-                        //log response status here..
-
-                        suggestedClasses = Enumerable.Empty<ClassBasicDataDto>();
-
-                        ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-                    }
+                    else
+                        return View("~/Views/Shared/Error.cshtml");
 
                     responseTask = client.GetAsync("student/classes");
                     responseTask.Wait();
@@ -106,14 +85,8 @@ namespace Language_School_Web.Controllers
 
                         studentClasses = readTask.Result;
                     }
-                    else //web api sent error response 
-                    {
-                        //log response status here..
-
-                        studentClasses = Enumerable.Empty<ClassBasicDataDto>();
-
-                        ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-                    }
+                    else
+                        return View("~/Views/Shared/Error.cshtml");
 
                     var studentClassesIds = studentClasses.Select(c => c.Id);
                     allClasses = allClasses.Where(c => !studentClassesIds.Contains(c.Id));
@@ -127,85 +100,97 @@ namespace Language_School_Web.Controllers
         {
             IEnumerable<ClassDataDto> userClasses = null;
             IEnumerable<ScheduleDay> scheduleDays = null;
-            using (var client = new HttpClient())
+            HttpCookie cookie = Request.Cookies["token"];
+            if (cookie != null)
             {
-                client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchoolWeb/api/");
-                string accessToken = Request.Cookies["token"].Value;
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
-                var responseTask = client.GetAsync("student/classes");
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    var readTask = result.Content.ReadAsAsync<IList<ClassDataDto>>();
-                    readTask.Wait();
+                    client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchoolWeb/api/");
+                    string accessToken = cookie.Value;
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-                    userClasses = readTask.Result;
-                    scheduleDays = userClasses.GroupBy(c => c.DayOfWeek)
-                        .Select(group => new ScheduleDay(){ Day = group.Key, Items = group.ToList() });
+                    var responseTask = client.GetAsync("student/classes");
+                    responseTask.Wait();
+
+                    var result = responseTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readTask = result.Content.ReadAsAsync<IList<ClassDataDto>>();
+                        readTask.Wait();
+
+                        userClasses = readTask.Result;
+                        scheduleDays = userClasses.GroupBy(c => c.DayOfWeek)
+                            .Select(group => new ScheduleDay() { Day = group.Key, Items = group.ToList() });
+                    }
+                    else
+                        return View("~/Views/Shared/Error.cshtml");
                 }
-                else //web api sent error response 
-                {
-                    //log response status here..
 
-                    userClasses = Enumerable.Empty<ClassDataDto>();
-
-                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-                }
+                return View(scheduleDays);
             }
-
-            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
-
-            return View(scheduleDays);
+            else
+                return View("~/Views/Shared/AccessDenied.cshtml");
         }
 
         public ActionResult SignFor(int classId)
         {
-            using (var client = new HttpClient())
+            HttpCookie cookie = Request.Cookies["token"];
+            if (cookie != null)
             {
-                client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchoolWeb/api/");
-                string accessToken = Request.Cookies["token"].Value;
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
-                var postTask = client.PostAsync("classes/" + classId.ToString(), null);
-                postTask.Wait();
-
-                var result = postTask.Result;
-                if (result.IsSuccessStatusCode)
+                string accessToken = cookie.Value;
+                using (var client = new HttpClient())
                 {
-                    return RedirectToAction("Index");
+                    client.BaseAddress = new Uri("http://projektnet.mini.pw.edu.pl/LanguageSchoolWeb/api/");
+                    accessToken = cookie.Value;
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+                    var postTask = client.PostAsync("classes/" + classId.ToString(), null);
+                    postTask.Wait();
+
+                    var result = postTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
+                return Index();
             }
-
-            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
-
-            return Index();
+            else
+                return View("~/Views/Shared/AccessDenied.cshtml");
         }
 
         public ActionResult GetPdf()
         {
-            HtmlToPdf converter = new HtmlToPdf();
-            converter.Options.HttpCookies.Add("token", Request.Cookies["token"].Value);
-            converter.Options.PdfPageSize = PdfPageSize.A4;
-            converter.Options.PdfPageOrientation = PdfPageOrientation.Landscape;
-            converter.Options.MarginLeft = 0;
-            converter.Options.MarginRight = 0;
-            converter.Options.MarginTop = 0;
-            converter.Options.MarginBottom = 0;
-            // create a new pdf document converting an url
-            PdfDocument doc = converter.ConvertUrl("http://localhost:53091/Classes/Schedule");
-            DateTime now = DateTime.Now;
-            string fileName = "/Schedule" + now.Year.ToString() + now.Month.ToString() + now.Day.ToString() + now.Hour.ToString() + now.Minute.ToString() + now.Second.ToString() + ".pdf";
-            doc.Save(getDownloadFolderPath() + fileName);
+            HttpCookie cookie = Request.Cookies["token"];
+            if (cookie != null)
+            {
+                string accessToken = cookie.Value;
+                HtmlToPdf converter = new HtmlToPdf();
+                converter.Options.HttpCookies.Add("token", accessToken);
+                converter.Options.PdfPageSize = PdfPageSize.A4;
+                converter.Options.PdfPageOrientation = PdfPageOrientation.Landscape;
+                converter.Options.MarginLeft = 0;
+                converter.Options.MarginRight = 0;
+                converter.Options.MarginTop = 0;
+                converter.Options.MarginBottom = 0;
+                // create a new pdf document converting an url
+                PdfDocument doc = converter.ConvertUrl("http://localhost:53091/Classes/Schedule");
+                DateTime now = DateTime.Now;
+                string fileName = "/Schedule" + now.Year.ToString() + now.Month.ToString() + now.Day.ToString() + now.Hour.ToString() + now.Minute.ToString() + now.Second.ToString() + ".pdf";
+                doc.Save(getDownloadFolderPath() + fileName);
 
-            // close pdf document
-            doc.Close();
-
-            return View();
+                // close pdf document
+                doc.Close();
+                return RedirectToAction("ScheduleView");
+            }
+            else
+                return View("~/Views/Shared/AccessDenied.cshtml");
         }
 
+        public ActionResult ScheduleView()
+        {
+            return View();
+        }
 
         string getDownloadFolderPath()
         {

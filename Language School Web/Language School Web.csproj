@@ -260,7 +260,6 @@
     <Content Include="Scripts\sb-admin-datatables.min.js" />
     <Content Include="Scripts\sb-admin.js" />
     <Content Include="Scripts\sb-admin.min.js" />
-    <Content Include="Views\Classes\index.html" />
     <Content Include="WebsiteTemplate\css\sb-admin.css" />
     <Content Include="WebsiteTemplate\css\sb-admin.min.css" />
     <Content Include="WebsiteTemplate\gulpfile.js" />
@@ -381,9 +380,8 @@
     <Content Include="WebsiteTemplate\package.json" />
     <Content Include="Views\Profile\Info.cshtml" />
     <Content Include="Views\Classes\Schedule.cshtml" />
-    <Content Include="Views\Classes\_schedule.cshtml" />
-    <Content Include="Views\Classes\GetPdf.cshtml" />
     <Content Include="Views\Shared\AccessDenied.cshtml" />
+    <Content Include="Views\Classes\ScheduleView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
