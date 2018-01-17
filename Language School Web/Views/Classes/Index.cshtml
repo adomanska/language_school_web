@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-        @if (Model.Item3 != null && Model.Item3.Count()>0)
+        @if (Model.Item3 != null && Model.Item3.Count() > 0)
         {
         <div class="col-lg-6">
             <div class="card mb-3">
@@ -66,6 +66,12 @@
                     }
                 </div>
             </div>
+        </div>
+        }
+        else
+        {
+         <div class="col-lg-6">
+            <img class="card-img-top img-fluid m-3 h-75 w-75" src="https://i.pinimg.com/originals/25/69/2a/25692ab2e532fc6f7d12026d0b8a9040.png" alt="">
         </div>
         }
     </div>
@@ -98,7 +104,7 @@
                     </tfoot>
                     <tbody>
                         @foreach (var item in Model.Item1)
-                        {
+                    {
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.ClassName)
@@ -125,22 +131,22 @@
                                 <div>
                                     @Html.DisplayFor(modelItem => item.StudentsCount)/@Html.DisplayFor(modelItem => item.StudentsMax)
                                     @if (Model.Item4)
-                                    {
-                                        <a class="btn btn-primary pull-right" href=@Url.Action("SignFor", "Classes", new { classId = item.Id })>
-                                            <i class="fa fa-cart-plus"></i>
-                                        </a>
-                                    }
+                                {
+                                    <a class="btn btn-primary pull-right" href=@Url.Action("SignFor", "Classes", new { classId = item.Id })>
+                                        <i class="fa fa-cart-plus"></i>
+                                    </a>
+                            }
                                 </div>
                             </td>
                         </tr>
-                        }
+                }
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="card-footer small text-muted"></div>
     </div>
-</div>
+    </div>
 
 
 
