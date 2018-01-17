@@ -10,78 +10,54 @@
         <div class="col-lg-6">
             @using (Html.BeginForm("Save", "Profile", FormMethod.Post, new { data_toggle = "validator", role = "form" }))
             {
-                <fieldset>
-                    <!-- Form Name -->
-                    @*<legend>User Profile</legend>*@
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-8 control-label" for="textinput">Username</label>
-                        <div class="col-md-8">
-                            @*<input id="textinput" name="textinput" type="text" placeholder="user id" class="form-control input-md">*@
-                            @Html.TextBoxFor(m => Model.Item1.UserName, new { @class = "form-control input-md", @Value = Model.Item1.UserName.ToString(), @readonly = "readonly" })
-                        </div>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-8 control-label" for="textinput">Username</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => Model.Item1.UserName, new { @class = "form-control input-md", @Value = Model.Item1.UserName.ToString(), @readonly = "readonly" })
                     </div>
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-8 control-label" for="textinput">First Name</label>
-                        <div class="col-md-8">
-                            @*<input id="textinput" name="textinput" type="text" placeholder="your first name" class="form-control input-md" required="">*@
-                            @Html.TextBoxFor(m => Model.Item1.FirstName, new { @class = "form-control input-md", @Value = Model.Item1.FirstName.ToString(), pattern = "^[A-Z][a-z]+$", required = "required", data_error = "First name is invalid" })
-                            <div class="help-block with-errors" style="color:#a94442"></div>
-                        </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-8 control-label" for="textinput">First Name</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => Model.Item1.FirstName, new { @class = "form-control input-md", @Value = Model.Item1.FirstName.ToString(), pattern = "^[A-Z][a-z]+$", required = "required", data_error = "First name is invalid" })
+                        <div class="help-block with-errors" style="color:#a94442"></div>
                     </div>
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-8 control-label" for="textinput">Last Name</label>
-                        <div class="col-md-8">
-                            @*<input id="textinput" name="textinput" type="text" placeholder="your last name" class="form-control input-md">*@
-                            @Html.TextBoxFor(m => Model.Item1.LastName, new { @class = "form-control input-md", @Value = Model.Item1.LastName.ToString(), pattern = "^[A-Z][a-z]+$", required = "required", data_error = "Last name is invalid" })
-                            <div class="help-block with-errors" style="color:#a94442"></div>
-                        </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-8 control-label" for="textinput">Last Name</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => Model.Item1.LastName, new { @class = "form-control input-md", @Value = Model.Item1.LastName.ToString(), pattern = "^[A-Z][a-z]+$", required = "required", data_error = "Last name is invalid" })
+                        <div class="help-block with-errors" style="color:#a94442"></div>
                     </div>
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-8 control-label" for="textinput">Email</label>
-                        <div class="col-md-8">
-                            @*<input id="textinput" name="textinput" type="email" placeholder="your email" class="form-control input-md">*@
-                            @Html.TextBoxFor(m => Model.Item1.Email, new { @class = "form-control input-md", @Value = Model.Item1.Email.ToString(), type = "email", data_error = "Email address is invalid", required = "required" })
-                            <div class="help-block with-errors" style="color:#a94442"></div>
-                        </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-8 control-label" for="textinput">Email</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => Model.Item1.Email, new { @class = "form-control input-md", @Value = Model.Item1.Email.ToString(), type = "email", data_error = "Email address is invalid", required = "required" })
+                        <div class="help-block with-errors" style="color:#a94442"></div>
                     </div>
-                    @*<!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-8 control-label" for="textinput">Password</label>
-                            <div class="col-md-8">
-                                <input id="textinput" name="textinput" type="text" placeholder="enter your password" class="form-control input-md">
-
-                            </div>
-                        </div>
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-8 control-label" for="textinput">Confirm Password</label>
-                            <div class="col-md-8">
-                                <input id="textinput" name="textinput" type="text" placeholder="confirm password" class="form-control input-md">
-
-                            </div>
-                        </div>*@
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-8 control-label" for="textinput">Phone Number</label>
-                        <div class="col-md-8">
-                            @*<input id="textinput" name="textinput" type="text" placeholder="your phone number" class="form-control input-md" required="">*@
-                            @Html.TextBoxFor(m => Model.Item1.PhoneNumber, new { @class = "form-control input-md", @Value = (Model.Item1.PhoneNumber == null) ? "" : Model.Item1.PhoneNumber.ToString(), pattern = "^[0-9]{9}", data_error = "Phone number is invalid" })
-                            <div class="help-block with-errors" style="color:#a94442"></div>
-                        </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-8 control-label" for="textinput">Phone Number</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => Model.Item1.PhoneNumber, new { @class = "form-control input-md", @Value = (Model.Item1.PhoneNumber == null) ? "" : Model.Item1.PhoneNumber.ToString(), pattern = "^[0-9]{9}", data_error = "Phone number is invalid" })
+                        <div class="help-block with-errors" style="color:#a94442"></div>
                     </div>
-                    <!-- Button (Double) -->
-                    <div class="form-group">
-                        <label class="col-md-8 control-label" for="btnsave">Save Changes</label>
-                        <div class="col-md-8 center-block">
-                            <button type="submit" name="submitButton" class="btn btn-primary" style="width:150px; margin-right:20px;" value="Yes">Yes</button>
-                            <button type="submit" name="submitButton" class="btn btn-secondary" style="width:150px" data-dismiss="modal" value="No">No</button>
-                        </div>
+                </div>
+                <!-- Button (Double) -->
+                <div class="form-group">
+                    <label class="col-md-8 control-label" for="btnsave">Save Changes</label>
+                    <div class="col-md-8 center-block">
+                        <button type="submit" name="submitButton" class="btn btn-primary" style="width:150px; margin-right:20px;" value="Yes">Yes</button>
+                        <button type="submit" name="submitButton" class="btn btn-secondary" style="width:150px" data-dismiss="modal" value="No">No</button>
                     </div>
-                </fieldset>
+                </div>
+            </fieldset>
             }
         </div>
         <div class="col-6">
@@ -96,10 +72,6 @@
                     </div>
                 </div>
             </div>
-            @*<div class="card mb-3">*@
-            @*<div class="card-header">
-                    <i class="fa fa-table"></i> User Classes
-                </div>*@
             <div class="card-body mb-0">
                 <div class="mb-0 mt-4">
                     <i class="fa fa-list"></i> Your classes
@@ -153,7 +125,6 @@
                     </table>
                 </div>
             </div>
-            @*</div>*@
         </div>
     </div>
 </div>
@@ -180,14 +151,3 @@
         </div>
     </div>
 </div>
-@*<div class="modal" id="addBookDialog">
-        <div class="modal-header">
-            <button class="close" data-dismiss="modal">×</button>
-            <h3>Modal header</h3>
-        </div>
-        <div class="modal-body">
-            <p id="idSet"></p>
-            @{ }
-            <input type="text" name="bookId" id="bookId" value="" />
-        </div>
-    </div>*@

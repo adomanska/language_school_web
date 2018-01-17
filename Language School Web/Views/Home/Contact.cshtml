@@ -31,9 +31,6 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
         <a class="navbar-brand" href="@Url.Action("Index", "Home")">Language School</a>
-        @*<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>*@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             @if (isUserLoggedIn)
             {
@@ -51,7 +48,7 @@
                         </a>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Profile">
-                        <a class="nav-link" href="@Url.Action("Schedule", "Classes")">
+                        <a class="nav-link" href="@Url.Action("ScheduleView", "Classes")">
                             <i class="fa fa-fw fa-table"></i>
                             <span class="nav-link-text">Schedule</span>
                         </a>
@@ -271,7 +268,6 @@
     <script src="~/WebsiteTemplate/js/sb-admin-datatables.min.js"></script>
     <script src="~/WebsiteTemplate/js/sb-admin-charts.min.js"></script>
     <script src="~/bootstrap-validator/dist/validator.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
 </body>
 </html>
 

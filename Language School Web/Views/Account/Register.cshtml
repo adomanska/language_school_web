@@ -37,66 +37,62 @@
         <div class="card card-register mx-auto mt-5">
             <div class="card-header">Register an Account</div>
             <div class="card-body">
-                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @id = "contact_form", role="form", data_toggle = "validator" }))
-                    {
-                        @*<div class="form-group">*@
-                        <div class="form-row">
-                            <div class="col-md-6 form-group">
-                                <label for="exampleInputName">First name</label>
-                                @Html.TextBoxFor(m => m.FirstName, new { placeholder = "Enter first name", @class = "form-control" })
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label for="exampleInputLastName">Last name</label>
-                                @Html.TextBoxFor(m => m.LastName, new { placeholder = "Enter last name", @class = "form-control" })
-                            </div>
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @id = "contact_form", role="form", data_toggle = "validator" }))
+                {
+                    <div class="form-row">
+                        <div class="col-md-6 form-group">
+                            <label for="exampleInputName">First name</label>
+                            @Html.TextBoxFor(m => m.FirstName, new { placeholder = "Enter first name", @class = "form-control" })
                         </div>
-                        @*</div>*@
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                @Html.TextBoxFor(m => m.Email, new { type = "email", placeholder = "Enter email", @class = "form-control" })
-                            </div>
+                        <div class="col-md-6 form-group">
+                            <label for="exampleInputLastName">Last name</label>
+                            @Html.TextBoxFor(m => m.LastName, new { placeholder = "Enter last name", @class = "form-control" })
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Phone Number</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                                @Html.TextBoxFor(m => m.PhoneNumber, new { placeholder = "Enter phone number", @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Username</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                @Html.TextBoxFor(m => m.UserName, new { placeholder = "Enter username", @class = "form-control" })
-                            </div>
-                        </div>
-                        @*<div class="form-group">*@
-                        <div class="form-row">
-                            <div class="col-md-6 form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control" })
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label for="exampleConfirmPassword">Confirm password</label>
-                                @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm password", @class = "form-control" })
-                            </div>
-                        </div>
-                        @*</div>*@
-                        <div class="form-group" style="text-align:center">
-                            @if (@ViewBag.NotValidUser != null)
-                            {
-                                <textbox style="color:#a94442"> @ViewBag.NotValidUser</textbox>
-                            }
-                        </div>
-                        <input type="submit" value="Register" class="btn btn-primary btn-block" />
-                    }
-                    <div class="text-center">
-                        <a class="d-block small mt-3" href="@Url.Action("Login", "Account")">Login Page</a>
-                        <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
                     </div>
-</div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            @Html.TextBoxFor(m => m.Email, new { type = "email", placeholder = "Enter email", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Phone Number</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                            @Html.TextBoxFor(m => m.PhoneNumber, new { placeholder = "Enter phone number", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            @Html.TextBoxFor(m => m.UserName, new { placeholder = "Enter username", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control" })
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="exampleConfirmPassword">Confirm password</label>
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm password", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group" style="text-align:center">
+                        @if (@ViewBag.NotValidUser != null)
+                        {
+                            <textbox style="color:#a94442"> @ViewBag.NotValidUser</textbox>
+                        }
+                    </div>
+                    <input type="submit" value="Register" class="btn btn-primary btn-block" />
+                }
+                <div class="text-center">
+                    <a class="d-block small mt-3" href="@Url.Action("Login", "Account")">Login Page</a>
+                    <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Bootstrap core JavaScript-->

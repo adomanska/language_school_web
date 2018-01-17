@@ -206,31 +206,14 @@
     <Content Include="bootstrap-validator\js\tests\vendor\qunit.css" />
     <Content Include="bootstrap-validator\js\tests\vendor\qunit.js" />
     <Content Include="bootstrap-validator\js\validator.js" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\contact.css" />
-    <Content Include="Content\contact2.css" />
-    <Content Include="Content\sb-admin.css" />
-    <Content Include="Content\sb-admin.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="js\sb-admin-charts.js" />
-    <Content Include="js\sb-admin-charts.min.js" />
-    <Content Include="js\sb-admin-datatables.js" />
-    <Content Include="js\sb-admin-datatables.min.js" />
-    <Content Include="js\sb-admin.js" />
-    <Content Include="js\sb-admin.min.js" />
     <Content Include="ScheduleTemplate\css\reset.css" />
     <Content Include="ScheduleTemplate\css\style.css" />
     <Content Include="ScheduleTemplate\js\jquery-3.0.0.min.js" />
     <Content Include="ScheduleTemplate\js\main.js" />
     <Content Include="ScheduleTemplate\js\modernizr.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -243,6 +226,8 @@
     <Content Include="bootstrap-validator\package.json" />
     <Content Include="bootstrap-validator\README.md" />
     <Content Include="bootstrap-validator\_config.yml" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

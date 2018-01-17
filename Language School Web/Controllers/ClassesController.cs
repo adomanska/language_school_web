@@ -129,7 +129,7 @@ namespace Language_School_Web.Controllers
                 return View(scheduleDays);
             }
             else
-                return View("~/Views/Shared/AccessDenied.cshtml");
+                return RedirectToAction("ScheduleView");
         }
 
         public ActionResult SignFor(int classId)
@@ -173,13 +173,10 @@ namespace Language_School_Web.Controllers
                 converter.Options.MarginRight = 0;
                 converter.Options.MarginTop = 0;
                 converter.Options.MarginBottom = 0;
-                // create a new pdf document converting an url
                 PdfDocument doc = converter.ConvertUrl("http://localhost:53091/Classes/Schedule");
                 DateTime now = DateTime.Now;
                 string fileName = "/Schedule" + now.Year.ToString() + now.Month.ToString() + now.Day.ToString() + now.Hour.ToString() + now.Minute.ToString() + now.Second.ToString() + ".pdf";
                 doc.Save(getDownloadFolderPath() + fileName);
-
-                // close pdf document
                 doc.Close();
                 return RedirectToAction("ScheduleView");
             }
@@ -189,7 +186,11 @@ namespace Language_School_Web.Controllers
 
         public ActionResult ScheduleView()
         {
-            return View();
+            HttpCookie cookie = Request.Cookies["token"];
+            if (cookie != null)
+                return View();
+            else
+                return View("~/Views/Shared/AccessDenied.cshtml");
         }
 
         string getDownloadFolderPath()
